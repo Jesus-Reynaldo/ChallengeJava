@@ -8,17 +8,16 @@ public class CyclicRotation {
         }
     }
     public int[] solution(int[] A, int K){
-        int[] result = A;
+        int N = A.length;
+        if(N==0)
+            return A;
         for(int i=1;i<=K;i++){
-            result=rotate(result);
+            int last = A[N-1];
+            for(int j=N-1;j>0;j--){
+                A[j]=A[j-1];
+            }
+            A[0]=last;
         }
-        return result;
-    }
-    public int[] rotate(int[] A){
-        int length = A.length;
-        int[] B = new int[length];
-        B[0] = A[length-1];
-        System.arraycopy(A, 0, B, 1, length - 1);
-        return B;
+        return A;
     }
 }
